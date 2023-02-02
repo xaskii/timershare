@@ -15,8 +15,8 @@ import { NavBar } from '../components/Navbar'
 import { AboutSection } from '../components/AboutSection'
 import { TimerCreation } from '../components/TimerCreation'
 
-// refactored layout into Layout.tsx then imported into _app, not sure if it's
-// better or worse when the layouts are simple
+// refactored layout into Layout.tsx then imported into _app
+// not sure if this decision better or worse when the layouts are simple
 const Index = () => (
   <>
     <NavBar />

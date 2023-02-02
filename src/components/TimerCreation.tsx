@@ -11,6 +11,8 @@ import {
 } from '@chakra-ui/react'
 import { useTimer } from 'react-timer-hook'
 
+import { Timer } from './Timer'
+
 export const TimerCreation = () => {
   const [expanded, setExpanded] = useState(false)
   const [offset, setOffset] = useState(0)
@@ -29,7 +31,14 @@ export const TimerCreation = () => {
               textAlign='center'
               fontSize='2xl'
             />
-            <Button size='lg' colorScheme='telegram' alignSelf='center'>
+            <Button
+              size='lg'
+              colorScheme='telegram'
+              alignSelf='center'
+              onClick={() => {
+                setOffset(100)
+              }}
+            >
               Start
             </Button>
           </VStack>
@@ -48,6 +57,14 @@ export const TimerCreation = () => {
             </Button>
           </VStack>
         )}
+      </Container>
+    )
+  } else {
+    return (
+      <Container p={0} alignItems='center' textAlign='center'>
+        <VStack>
+          <Timer offset={offset} />
+        </VStack>
       </Container>
     )
   }
