@@ -1,50 +1,49 @@
 import React, { useEffect, useState } from 'react'
 import { useTimer } from 'react-timer-hook'
-import { Text, Button, Flex } from '@chakra-ui/react'
+import { Text, Button, Flex, ButtonGroup } from '@chakra-ui/react'
 
+import { pad, offsetToDate } from '../utils/helper'
+
+// offset and expiry to add functions for adding and removing time
+// will implement own timer hook to fix this in future, cuz this is so bad
 interface TimerProps {
   offset: number
+  expiry?: Date
 }
 
-export const Timer: React.FC<TimerProps> = ({ offset }) => {
-  // const [expiry, setExpiry] = useState<Date | null>(null)
-  // useEffect(() => {
-  //   const time = new Date()
-  //   time.setSeconds(time.getSeconds() + offset)
-  //   setExpiry(time)
-  // }, [offset])
-
-  const time = new Date()
-  time.setSeconds(time.getSeconds() + offset)
-  const expiry = time
-
+export const Timer: React.FC<TimerProps> = ({ expiry, offset }) => {
   const { seconds, minutes, hours, isRunning, start, pause, resume, restart } =
     useTimer({
-      expiryTimestamp: expiry,
+      expiryTimestamp: offsetToDate(offset),
       onExpire: () => console.warn('onExpire called'),
     })
 
-  console.log({ offset })
-  console.log({ expiry })
-
   return (
     <>
-      <Text fontSize='5xl'>
+      <Text fontSize='7xl'>
         {/* TODO: padding with leading zeros, probably just make helper function */}
-        {hours}:{minutes}:{seconds}
+        {pad(hours, minutes, seconds)}
       </Text>
       <Flex>
-        <Button>- 15s</Button>
-        <Button
-          onClick={() => {
-            const time = new Date()
-            time.setSeconds(time.getSeconds() + offset)
-            restart(time)
-          }}
-        >
-          Restart
-        </Button>
-        <Button>+15s</Button>
+        <ButtonGroup variant='outline' colorScheme='twitter'>
+          <Button>- 15s</Button>
+          <Button
+            onClick={() => {
+              restart(offsetToDate(offset))
+            }}
+          >
+            Restart
+          </Button>
+          <Button
+            onClick={() => {
+              pause()
+            }}
+          >
+            Pause
+          </Button>
+          <Button>Resume</Button>
+          <Button>+15s</Button>
+        </ButtonGroup>
       </Flex>
     </>
   )

@@ -8,10 +8,12 @@ import {
   Text,
   Container,
   Input,
+  Flex,
 } from '@chakra-ui/react'
 import { useTimer } from 'react-timer-hook'
 
 import { Timer } from './Timer'
+import { offsetToDate } from '../utils/helper'
 
 export const TimerCreation = () => {
   const [expanded, setExpanded] = useState(false)
@@ -61,9 +63,9 @@ export const TimerCreation = () => {
     )
   } else {
     return (
-      <Container p={0} alignItems='center' textAlign='center'>
-        <VStack>
-          <Timer offset={offset} />
+      <Container p={0} alignItems='center'>
+        <VStack alignContent='center'>
+          <Timer offset={offset} expiry={offsetToDate(offset)} />
         </VStack>
       </Container>
     )
