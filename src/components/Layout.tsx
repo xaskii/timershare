@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, ButtonGroup, Button } from '@chakra-ui/react'
-import { Container } from './Container'
 import { DarkModeSwitch } from './DarkModeSwitch'
+import { NavBar } from './Navbar'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -9,7 +9,14 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <Container w='full' h='100vh'>
+    <Flex
+      // bg='gray.50'
+      direction='column'
+      w='full'
+      h='100vh'
+      justifyContent='flex-start'
+    >
+      <NavBar />
       {children}
       <Flex w='full' p={6} justifyContent='flex-end' justifySelf='flex-end'>
         <ButtonGroup gap={2} variant='link' size='lg'>
@@ -18,6 +25,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         </ButtonGroup>
       </Flex>
       <DarkModeSwitch />
-    </Container>
+    </Flex>
   )
 }
