@@ -15,16 +15,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       w='full'
       h='100vh'
       justifyContent='flex-start'
+      bg='gray.300'
     >
       <NavBar />
       {children}
       <Flex w='full' p={6} justifyContent='flex-end' justifySelf='flex-end'>
-        <ButtonGroup gap={2} variant='link' size='lg'>
+        <ButtonGroup gap={2} variant='link' size='lg' colorScheme='black'>
           <Button>Contact</Button>
           <Button>About</Button>
         </ButtonGroup>
       </Flex>
-      <DarkModeSwitch />
+      {/* <DarkModeSwitch /> */}
     </Flex>
   )
 }

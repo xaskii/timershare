@@ -5,32 +5,53 @@ import {
   VStack,
   ButtonGroup,
   Container,
+  Heading,
+  HStack,
+  Stack,
+  Input,
 } from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
-import { Hero } from '../components/Hero'
-import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
-import { NavBar } from '../components/Navbar'
-import { AboutSection } from '../components/AboutSection'
-import { TimerCreation } from '../components/TimerCreation'
 
 // refactored layout into Layout.tsx then imported into _app
 // not sure if this decision better or worse when the layouts are simple
 const Index = () => (
-  <Container p={0} h='full' maxW='container.xl'>
-    <VStack
-      spacing={4}
-      p={4}
-      pb={40}
+  <Container p={0} h='full' maxW='90%'>
+    <Stack
+      justifyContent='center'
+      alignContent='center'
+      direction={['column', 'column', 'column', 'row']}
       h='full'
       w='full'
-      alignItems='flex-start'
-      justifyContent='center'
+      p={10}
     >
-      <TimerCreation />
-    </VStack>
+      <VStack
+        h='full'
+        w={['full', 'full', 'full', '50%']}
+        alignItems='center'
+        textAlign='center'
+        justifyContent='center'
+      >
+        <Heading fontSize='8xl'>Share a timer with a friend.</Heading>
+      </VStack>
+      <VStack
+        justifyContent='center'
+        w={['full', 'full', 'full', '50%']}
+        spacing={4}
+        textAlign='center'
+      >
+        <Heading>How long should it be?</Heading>
+        <Input textAlign='center' w='80%' fontSize='md' shadow='md'></Input>
+        {/* <Button
+          borderColor='black'
+          size='lg'
+          borderRadius='lg'
+          border='2px'
+          bg='black'
+          color='gray.300'
+        >
+          Start
+        </Button> */}
+      </VStack>
+    </Stack>
   </Container>
 )
 
