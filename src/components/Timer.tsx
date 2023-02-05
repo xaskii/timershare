@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTimer } from 'react-timer-hook'
-import { Text, Button, Flex, ButtonGroup } from '@chakra-ui/react'
+import { Text, Button, Flex, ButtonGroup, VStack } from '@chakra-ui/react'
 
 import { pad, offsetToDate } from '../utils/helper'
 
@@ -19,32 +19,24 @@ export const Timer: React.FC<TimerProps> = ({ expiry, offset }) => {
     })
 
   return (
-    <>
-      <Text fontSize='7xl'>
+    <VStack m={0} spacing={0} alignSelf='center' p={0}>
+      <Text fontSize='7xl' textAlign='center'>
         {/* TODO: padding with leading zeros, probably just make helper function */}
         {pad(hours, minutes, seconds)}
       </Text>
       <Flex>
-        <ButtonGroup variant='outline' colorScheme='twitter'>
+        <ButtonGroup variant='outline' colorScheme='black'>
           <Button>- 15s</Button>
-          <Button
-            onClick={() => {
-              restart(offsetToDate(offset))
-            }}
-          >
-            Restart
-          </Button>
-          <Button
-            onClick={() => {
-              pause()
-            }}
-          >
-            Pause
-          </Button>
-          <Button>Resume</Button>
+          <Button onClick={() => restart(offsetToDate(offset))}>Restart</Button>
+          {isRunning ? (
+            <Button onClick={pause}>Pause</Button>
+          ) : (
+            <Button onClick={resume}>Resume</Button>
+          )}
+
           <Button>+15s</Button>
         </ButtonGroup>
       </Flex>
-    </>
+    </VStack>
   )
 }

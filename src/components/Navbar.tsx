@@ -12,15 +12,20 @@ import {
 
 export const NavBar = () => (
   // TODO: add border/drop-shadow to surrounding container
-  <Box shadow='sm' w='full'>
+  <Box shadow='xs' w='full'>
     <Container m={5} w='full' p={0}>
-      <HStack w='full' spacing={10} alignItems='flex-start'>
-        <Heading size='xl'>
-          <Link href='/'>Timershare</Link>
-        </Heading>
-        <Heading size='md'>
-          <Link href='/timer/aaodsfoji'>testRoom</Link>
-        </Heading>
+      <HStack
+        w='full'
+        spacing={10}
+        alignItems='flex-end'
+        justifyContent='space-between'
+      >
+        <Link href='/'>
+          <Heading size='xl'>Timershare</Heading>
+        </Link>
+        {/* <Link href='/timer/oaisjfaodsf'>
+          <Heading size='lg'>test room</Heading>
+        </Link> */}
       </HStack>
     </Container>
   </Box>
