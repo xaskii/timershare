@@ -9,6 +9,8 @@ import {
   HStack,
   Stack,
   Input,
+  FormControl,
+  Box,
 } from '@chakra-ui/react'
 
 // refactored layout into Layout.tsx then imported into _app
@@ -39,7 +41,14 @@ const Index = () => (
         textAlign='center'
       >
         <Heading>How long should it be?</Heading>
-        <Input textAlign='center' w='80%' fontSize='md' shadow='md'></Input>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault()
+            console.log('hello')
+          }}
+        >
+          <Input textAlign='center' fontSize='md' shadow='md'></Input>
+        </form>
         {/* <Button
           borderColor='black'
           size='lg'

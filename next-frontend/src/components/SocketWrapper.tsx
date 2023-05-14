@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NextRouter, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import {
   Button,
   Box,
@@ -17,7 +17,9 @@ import {
 import { Timer } from './Timer'
 
 import { io } from 'socket.io-client'
-const socket = io('http://localhost:3001')
+// const socket = io('http://localhost:3001')
+const socket = io(process.env.NEXT_PUBLIC_WSSERVER_URL)
+console.error({ envvarhere: process.env.NEXT_PUBLIC_WSSERVER_URL })
 
 interface SocketWrapperProps {}
 
@@ -30,29 +32,27 @@ export const SocketWrapper: React.FC<SocketWrapperProps> = ({}) => {
   useEffect(() => {
     setSocketCopy({ ...socket })
 
+    // will refactor into a util, maybe socket controller?
     socket.on('info', () => {
       setIsConnected(true)
-    })
-    socket.on('disconnect', () => {
-      console.log('disconnect')
     })
     socket.on('pong', () => {
       setLastPong(new Date().toISOString())
     })
-    socket.on('info', (content) => {
-      console.log(content)
+    socket.on('hand extended', (...args) => {
+      console.log('handshake complete ')
     })
     socket.onAny((event, ...args) => {
       console.log(event, args)
     })
-    socket.emit('ready')
+    socket.emit('extend hand')
     socket.emit('ping')
 
-    // return () => {,
-    //   socket.off('connection')
-    //   socket.off('disconnect')
-    //   socket.off('pong')
-    // }
+    return () => {
+      socket.off('info')
+      socket.off('pong')
+      socket.off('hand extended')
+    }
   }, [])
 
   const sendPing = () => {
@@ -95,17 +95,19 @@ export const SocketWrapper: React.FC<SocketWrapperProps> = ({}) => {
         textAlign='center'
         justifyContent='center'
       >
+        <h1 style={{ display: 'flex' }}></h1>
         <Text>
           room: <span>{router.query.room}</span>
         </Text>
         <Text>last ping: {lastPong}</Text>
         <Text>connected: {String(isConnected)}</Text>
         <Text>socketId: {socketCopy?.id}</Text>
-        <ButtonGroup>
+        <ButtonGroup variant='solid'>
           <Button onClick={() => console.log(socketCopy)}>
             log socket info
           </Button>
           <Button onClick={sendPing}>ping</Button>
+          <Button>hahahahahah i ahte this shit</Button>
         </ButtonGroup>
       </VStack>
 
