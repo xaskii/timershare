@@ -1,8 +1,5 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
+  "name": "websocket-backend",
   "scripts": {
     "gen-env": "gen-env-types .env -o src/env.d.ts -e .",
     "build": "tsc",

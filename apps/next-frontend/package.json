@@ -1,5 +1,5 @@
 {
-  "private": true,
+  "name": "next-frontend",
   "scripts": {
     "dev": "next",
     "build": "next build",
