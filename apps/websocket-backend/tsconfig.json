@@ -1,4 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
+  "ts-node": {
+    "esm": true
+  },
   "include": ["./env.d.ts", "./src/**/*.ts"]
 }

@@ -1,5 +1,6 @@
 {
   "name": "websocket-backend",
+  "type": "module",
   "scripts": {
     "gen-env": "gen-env-types .env -o src/env.d.ts -e .",
     "build": "tsc",
