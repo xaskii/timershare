@@ -9,7 +9,7 @@
   },
   "targetDefaults": {
     "start": {
-      "dependsOn": ["build"]
+      "dependsOn": ["^build"]
     }
   },
   "affected": {
